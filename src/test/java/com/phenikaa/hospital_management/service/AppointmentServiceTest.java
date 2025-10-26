@@ -1,6 +1,6 @@
 package com.phenikaa.hospital_management.service;
 
-import com.phenikaa.hospital_management.dto.AppointmentRequestDTO; // THÊM
+import com.phenikaa.hospital_management.dto.AppointmentRequestDTO;
 import com.phenikaa.hospital_management.exception.ResourceNotFoundException;
 import com.phenikaa.hospital_management.model.Appointment;
 import com.phenikaa.hospital_management.model.AppointmentStatus;
@@ -56,6 +56,7 @@ class AppointmentServiceTest {
         mockAppointment.setPatient(mockPatient);
         mockAppointment.setDoctor(mockDoctor);
         mockAppointment.setStatus(AppointmentStatus.SCHEDULED);
+        mockAppointment.setAppointmentTime(LocalDateTime.now().plusHours(24)); 
         
         mockRequestDTO = new AppointmentRequestDTO();
         mockRequestDTO.setDoctorId(1L);

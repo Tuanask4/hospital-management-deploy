@@ -7,6 +7,7 @@ import com.phenikaa.hospital_management.mapper.PatientMapper;
 import com.phenikaa.hospital_management.model.Patient;
 import com.phenikaa.hospital_management.repository.DoctorRepository;
 import com.phenikaa.hospital_management.repository.PatientRepository;
+import com.phenikaa.hospital_management.repository.AppointmentRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.util.Optional;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -31,6 +33,9 @@ class PatientServiceTest {
 
     @Mock
     private DoctorRepository doctorRepository;
+    
+    @Mock
+    private AppointmentRepository appointmentRepository;
 
     @Mock
     private PasswordEncoder passwordEncoder;
@@ -187,6 +192,8 @@ class PatientServiceTest {
     void testDeactivatePatient_Success() {
         // Arrange
         when(patientRepository.findByUsername("testuser")).thenReturn(Optional.of(mockPatient));
+        // Giả lập cho hàm findByPatientId để tránh lỗi NPE
+        when(appointmentRepository.findByPatientId(mockPatient.getId())).thenReturn(Collections.emptyList());
         
         // Act
         patientService.deactivatePatient("testuser");
