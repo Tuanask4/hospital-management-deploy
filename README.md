@@ -13,7 +13,7 @@
 
 ## 2. Thông tin
 
-* **Link Github Repository:** `[link]`
+* **Link Github Repository:** https://github.com/Tuanask4/hospital-management-deploy
 * **Link Demo Youtube:** `[link]`
 * **Link Deploy (chạy toàn cầu):** `[link]`
 
